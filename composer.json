@@ -1,0 +1,33 @@
+{
+  "name": "farmatholin/segment-io-bundle",
+  "type": "symfony-bundle",
+  "description": "Segment.io php lib",
+  "keywords": [
+    "farmatholin",
+    "segmentio",
+    "segment",
+    "bundle",
+    "doctrine",
+    "symfony"
+  ],
+  "homepage": "http://github.com/farmatholin/SegmentIoBundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vladislav Marin",
+      "email": "farmatholin@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "symfony/framework-bundle": "~2.1",
+    "symfony/twig-bundle": "~2.0",
+    "twig/twig": "~1.12",
+    "segmentio/analytics-php": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Farmatholin\\SegmentIoBundle\\": "."
+    }
+  }
+}
