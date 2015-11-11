@@ -26,19 +26,6 @@
     "twig/twig": "~1.12",
     "segmentio/analytics-php": "dev-master"
   },
-  "repositories" : [
-    {
-      "type": "package",
-      "package": {
-        "name": "segmentio/analytics-php",
-        "version": "master",
-        "source": {
-          "url": "https://github.com/segmentio/analytics-php",
-          "type": "git",
-          "reference": "origin/master"
-        }
-      }
-    }],
   "autoload": {
     "psr-4": {
       "Farmatholin\\SegmentIoBundle\\": "."
