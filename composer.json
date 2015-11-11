@@ -10,6 +10,7 @@
     "doctrine",
     "symfony"
   ],
+  "version" : "1.0.0-alpha",
   "homepage": "http://github.com/farmatholin/SegmentIoBundle",
   "license": "MIT",
   "authors": [
