@@ -9,7 +9,7 @@ Installing the bundle via packagist is the quickest and simplest method of insta
 
 ### Step 1: Composer require
 
-    $ php composer.phar require "farmatholin/SegmentIoBundle":"dev-master"
+    $ php composer.phar require "farmatholin/segment-io-bundle":"dev-master"
 
 ### Step 2: Enable the bundle in the kernel
 
