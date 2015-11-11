@@ -20,10 +20,36 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('segment_io');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
-
+        $rootNode
+            ->children()
+                ->scalarNode('write_key')
+                    ->cannotBeEmpty()
+                    ->isRequired()
+                ->end()
+                ->arrayNode('options')
+                    ->children()
+                        ->scalarNode('consumer')
+                            ->defaultValue('socket')
+                        ->end()
+                        ->booleanNode('debug')
+                            ->defaultFalse()
+                        ->end()
+                        ->booleanNode('ssl')
+                            ->defaultFalse()
+                        ->end()
+                        ->integerNode('max_queue_size')
+                            ->defaultValue(10000)
+                        ->end()
+                        ->integerNode('batch_size')
+                            ->defaultValue(100)
+                        ->end()
+                        ->floatNode('timeout')
+                            ->defaultValue(0.5)
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+            ;
         return $treeBuilder;
     }
 }

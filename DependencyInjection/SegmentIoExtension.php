@@ -24,5 +24,8 @@ class SegmentIoExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter('farma.segment_io_write_key',$config['write_key']);
+        $container->setParameter('farma.segment_io_options',$config['options']);
     }
 }
