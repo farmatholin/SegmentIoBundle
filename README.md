@@ -25,7 +25,7 @@ Installing the bundle via packagist is the quickest and simplest method of insta
         );
     }
 
-That's it! You are ready to use Buzz with symfony2.
+That's it! You are ready to use Segment.io with symfony2.
 
 ## Configuration
 Required  segment write key:
@@ -36,7 +36,7 @@ segment_io:
 ```
 
 ## Usage
-Get `gremo_buzz` service from the service container and start using the browser:
+Get `segment_io.analytics` service from the service container and start using it:
 
 ```php
 $analytics = $this->get('segment_io.analytics');
