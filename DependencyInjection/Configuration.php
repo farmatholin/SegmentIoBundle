@@ -27,6 +27,7 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                 ->end()
                 ->arrayNode('options')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('consumer')
                             ->defaultValue('socket')
