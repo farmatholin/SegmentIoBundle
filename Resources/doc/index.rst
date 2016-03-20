@@ -36,6 +36,7 @@ Configure bundle
         # app/config/config.yml
         segment_io:
             write_key: "%your_key%" #add your key
+            env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
             options:
                 consumer: socket #default
                 debug: false #default

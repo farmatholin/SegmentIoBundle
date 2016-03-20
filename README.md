@@ -36,8 +36,18 @@ That's it! You are ready to use Segment.io with symfony2.
 Required  segment write key:
 ```yml
 # SegmentIoBundle Configuration
-segment_io:
-    write_key: "%your_key%"
+# app/config/config.yml
+        segment_io:
+            write_key: "%your_key%" #add your key
+            env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
+            options:
+                consumer: socket #default
+                debug: false #default
+                ssl: false #default
+                max_queue_size: 10000 #default
+                batch_size: 100 #default
+                timeout: 0.5 #default
+                filename: null #default
 ```
 
 ## Usage

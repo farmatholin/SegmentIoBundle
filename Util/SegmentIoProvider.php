@@ -18,15 +18,37 @@ use Segment as Analytics;
  */
 class SegmentIoProvider
 {
+    const SEGMENT_IO_PROVIDER__ENV_PROD = 'prod';
+    const SEGMENT_IO_PROVIDER__ENV_DEV = 'dev';
+
+    /**
+     * @var string
+     * environment
+     */
+    private $environment;
+
     /**
      * SegmentIoProvider constructor.
      *
      * @param $key
+     * @param $environment
      * @param array $options
      */
-    public function __construct($key, array $options)
+    public function __construct($key, $environment, array $options)
     {
-        Analytics::init($key, $options);
+        $this->environment = $environment;
+        if ($this->environment == self::SEGMENT_IO_PROVIDER__ENV_PROD) {
+            Analytics::init($key, $options);
+        }
+    }
+
+
+    private function process($name, array $params)
+    {
+        if ($this->environment == self::SEGMENT_IO_PROVIDER__ENV_PROD) {
+            return Analytics::$name($params);
+        }
+        return true;
     }
 
     /**
@@ -35,7 +57,7 @@ class SegmentIoProvider
      */
     public function track(array $message)
     {
-        return Analytics::track($message);
+        return $this->process('track',$message);
     }
 
     /**
@@ -44,7 +66,7 @@ class SegmentIoProvider
      */
     public function identify(array $message)
     {
-        return Analytics::identify($message);
+        return $this->process(__FUNCTION__,$message);
     }
 
     /**
@@ -53,7 +75,7 @@ class SegmentIoProvider
      */
     public function page(array $message)
     {
-        return Analytics::page($message);
+        return $this->process(__FUNCTION__,$message);
     }
 
     /**
@@ -62,7 +84,7 @@ class SegmentIoProvider
      */
     public function alias(array $message)
     {
-        return Analytics::alias($message);
+        return $this->process(__FUNCTION__,$message);
     }
 
     /**
@@ -71,7 +93,7 @@ class SegmentIoProvider
      */
     public function group(array $message)
     {
-        return Analytics::group($message);
+        return $this->process(__FUNCTION__,$message);
     }
 
     /**
@@ -83,15 +105,15 @@ class SegmentIoProvider
     }
 
     /**
-     * @param array  $msg
+     * @param array $msg
      * @param $string
      * @return bool
      */
     public function validate(array $msg, $string)
     {
-        try{
+        try {
             Analytics::validate($msg, $string);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return false;
         }
         return true;
