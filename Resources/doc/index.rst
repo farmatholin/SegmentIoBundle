@@ -29,21 +29,18 @@ Configuration
 -------------
 Configure bundle
 
-.. configuration-block::
-
-    .. code-block:: yaml
-
-        # app/config/config.yml
-        segment_io:
-            write_key: "%your_key%" #add your key
-            env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
-            options:
-                consumer: socket #default
-                debug: false #default
-                ssl: false #default
-                max_queue_size: 10000 #default
-                batch_size: 100 #default
-                timeout: 0.5 #default
-                filename: null #default
+.. code-block:: yaml
+    # app/config/config.yml
+    segment_io:
+        write_key: "%your_key%" #add your key
+        env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
+        options:
+            consumer: socket #default
+            debug: false #default
+            ssl: false #default
+            max_queue_size: 10000 #default
+            batch_size: 100 #default
+            timeout: 0.5 #default
+            filename: null #default
 
 More about options `Configuration <https://segment.com/docs/libraries/php/#configuration>`_
