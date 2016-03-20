@@ -3,6 +3,11 @@ Bundle include segment.io library for analytics
 
 include segmentio/analytics-php
 
+Documentation
+-------------
+
+The bulk of the documentation is stored in the [Resources/doc](Resources/doc) folder in this bundle
+
 ## Installation
 
 Installing the bundle via packagist is the quickest and simplest method of installing the bundle. Here are the steps:

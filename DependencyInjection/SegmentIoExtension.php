@@ -8,14 +8,15 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * This is the class that loads and manages your bundle configuration
+ * Class SegmentIoExtension
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * @package Farmatholin\SegmentIoBundle\DependencyInjection
  */
 class SegmentIoExtension extends Extension
 {
     /**
-     * {@inheritdoc}
+     * @param array $configs
+     * @param ContainerBuilder $container
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -25,7 +26,7 @@ class SegmentIoExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->setParameter('farma.segment_io_write_key',$config['write_key']);
-        $container->setParameter('farma.segment_io_options',$config['options']);
+        $container->setParameter('farma.segment_io_write_key', $config['write_key']);
+        $container->setParameter('farma.segment_io_options', $config['options']);
     }
 }

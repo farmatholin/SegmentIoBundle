@@ -12,10 +12,18 @@ use Segment as Analytics;
 
 /**
  * Class SegmentIoProvider
+ *
  * @package Farmatholin\SegmentIoBundle\Util
+ * @author Vladislav Marin <vladislav.marin92@gmail.com>
  */
 class SegmentIoProvider
 {
+    /**
+     * SegmentIoProvider constructor.
+     *
+     * @param $key
+     * @param array $options
+     */
     public function __construct($key, array $options)
     {
         Analytics::init($key, $options);
@@ -25,7 +33,8 @@ class SegmentIoProvider
      * @param array $message
      * @return bool
      */
-    public function track(array $message){
+    public function track(array $message)
+    {
         return Analytics::track($message);
     }
 
@@ -33,7 +42,8 @@ class SegmentIoProvider
      * @param array $message
      * @return bool
      */
-    public function identify(array $message){
+    public function identify(array $message)
+    {
         return Analytics::identify($message);
     }
 
@@ -41,7 +51,8 @@ class SegmentIoProvider
      * @param array $message
      * @return bool
      */
-    public function page(array $message){
+    public function page(array $message)
+    {
         return Analytics::page($message);
     }
 
@@ -49,7 +60,8 @@ class SegmentIoProvider
      * @param array $message
      * @return bool
      */
-    public function alias(array $message){
+    public function alias(array $message)
+    {
         return Analytics::alias($message);
     }
 
@@ -57,23 +69,26 @@ class SegmentIoProvider
      * @param array $message
      * @return bool
      */
-    public function group(array $message){
+    public function group(array $message)
+    {
         return Analytics::group($message);
     }
 
     /**
      * @return mixed
      */
-    public function flush(){
+    public function flush()
+    {
         return Analytics::flush();
     }
 
     /**
-     * @param array $msg
+     * @param array  $msg
      * @param $string
      * @return bool
      */
-    public function validate(array $msg, $string){
+    public function validate(array $msg, $string)
+    {
         try{
             Analytics::validate($msg, $string);
         }catch (\Exception $e){
