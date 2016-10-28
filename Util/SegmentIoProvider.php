@@ -101,7 +101,10 @@ class SegmentIoProvider
      */
     public function flush()
     {
-        return Analytics::flush();
+        if ($this->environment == self::SEGMENT_IO_PROVIDER__ENV_PROD) {
+            return Analytics::flush();
+        }
+        return true;
     }
 
     /**
