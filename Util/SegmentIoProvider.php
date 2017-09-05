@@ -28,6 +28,12 @@ class SegmentIoProvider
     private $environment;
 
     /**
+     * @var bool
+     * isEnabled
+     */
+    private $isEnabled;
+
+    /**
      * SegmentIoProvider constructor.
      *
      * @param $key
@@ -37,7 +43,8 @@ class SegmentIoProvider
     public function __construct($key, $environment, array $options)
     {
         $this->environment = $environment;
-        if ($this->environment == self::SEGMENT_IO_PROVIDER__ENV_PROD) {
+        $this->isEnabled = $this->environment == self::SEGMENT_IO_PROVIDER__ENV_PROD && $key;
+        if ($this->isEnabled) {
             Analytics::init($key, $options);
         }
     }
@@ -45,7 +52,7 @@ class SegmentIoProvider
 
     private function process($name, array $params)
     {
-        if ($this->environment == self::SEGMENT_IO_PROVIDER__ENV_PROD) {
+        if ($this->isEnabled) {
             return Analytics::$name($params);
         }
         return true;
@@ -101,7 +108,7 @@ class SegmentIoProvider
      */
     public function flush()
     {
-        if ($this->environment == self::SEGMENT_IO_PROVIDER__ENV_PROD) {
+        if ($this->isEnabled) {
             return Analytics::flush();
         }
         return true;
