@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('write_key')
+                    ->defaultValue('')
                 ->end()
                 ->enumNode('env')
                     ->values(['dev', 'prod'])
