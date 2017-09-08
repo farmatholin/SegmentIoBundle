@@ -5,6 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="farma.segment_io.provider.class">Farmatholin\SegmentIoBundle\Util\SegmentIoProvider</parameter>
+        <parameter key="farma.segment_io.event_listener.annotation_listener.class">Farmatholin\SegmentIoBundle\EventListener\AnnotationListener</parameter>
     </parameters>
 
     <services>
@@ -13,5 +14,16 @@
             <argument>%farma.segment_io_env%</argument>
             <argument>%farma.segment_io_options%</argument>
         </service>
+
+        <service id="farma.segment_io.annotation_listener" class="%farma.segment_io.event_listener.annotation_listener.class%">
+            <argument type="service" id="annotation_reader" />
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="segment_io.analytics"/>
+            <argument>%farma.segment_io_guest_id%</argument>
+            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
+        </service>
+
     </services>
+
+
 </container>

@@ -10,12 +10,14 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * Class SegmentIoExtension
  *
+ * @author Vladislav Marin <vladislav.marin92@gmail.com>
+ *
  * @package Farmatholin\SegmentIoBundle\DependencyInjection
  */
 class SegmentIoExtension extends Extension
 {
     /**
-     * @param array $configs
+     * @param array            $configs
      * @param ContainerBuilder $container
      */
     public function load(array $configs, ContainerBuilder $container)
@@ -27,6 +29,7 @@ class SegmentIoExtension extends Extension
         $loader->load('services.xml');
 
         $container->setParameter('farma.segment_io_write_key', $config['write_key']);
+        $container->setParameter('farma.segment_io_guest_id', $config['guest_id']);
         $container->setParameter('farma.segment_io_env', $config['env']);
         $container->setParameter('farma.segment_io_options', $config['options']);
     }

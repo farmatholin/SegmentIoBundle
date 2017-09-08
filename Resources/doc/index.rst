@@ -11,7 +11,9 @@ Install
 
     $ php composer.phar require "farmatholin/segment-io-bundle":"dev-master"
 
-Enable the bundle in the kernel::
+Enable the bundle in the kernel:
+
+.. code-block:: php
 
     <?php
     // app/AppKernel.php
@@ -30,9 +32,10 @@ Configuration
 Configure bundle
 
 .. code-block:: yaml
-    # app/config/config.yml
+
     segment_io:
         write_key: "%your_key%" #add your key
+        guest_id: "guest" # default guest. Guest id for annotation Track and Page
         env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
         options:
             consumer: socket #default
