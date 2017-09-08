@@ -7,6 +7,9 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Class Configuration
+ *
+ * @author Vladislav Marin <vladislav.marin92@gmail.com>
+ *
  * @package Farmatholin\SegmentIoBundle\DependencyInjection
  */
 class Configuration implements ConfigurationInterface
@@ -24,6 +27,9 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('write_key')
                     ->defaultValue('')
+                ->end()
+                ->scalarNode('guest_id')
+                    ->defaultValue('guest')
                 ->end()
                 ->enumNode('env')
                     ->values(['dev', 'prod'])

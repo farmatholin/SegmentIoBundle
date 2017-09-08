@@ -1,7 +1,8 @@
 # Segment Io Bundle
+
 Bundle include segment.io library for analytics
 
-include segmentio/analytics-php
+include [segmentio/analytics-php](https://github.com/segmentio/analytics-php)
 
 Documentation
 -------------
@@ -33,12 +34,15 @@ Installing the bundle via packagist is the quickest and simplest method of insta
 That's it! You are ready to use Segment.io with symfony2.
 
 ## Configuration
+
 Required  segment write key:
+
 ```yml
 # SegmentIoBundle Configuration
 # app/config/config.yml
         segment_io:
             write_key: "%your_key%" #add your key
+            guest_id: "guest" # default guest. Guest id for annotation Track and Page
             env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
             options:
                 consumer: socket #default
@@ -51,11 +55,43 @@ Required  segment write key:
 ```
 
 ## Usage
+
 Get `segment_io.analytics` service from the service container and start using it:
 
 ```php
 $analytics = $this->get('segment_io.analytics');
-$analytics->page()
+$analytics->page([])
 ```
+
+Or using Annotations (Page and Track)
+
+User for annotations is getting from TokenStorage.
+If user doesn't exit, id set to `guest` or from configuration 'guest_id'
+
+```php
+use Farmatholin\SegmentIoBundle\Configuration\Page;
+use Farmatholin\SegmentIoBundle\Configuration\Track;
+
+/**
+     * @Route("/", name="homepage")
+     *
+     * @Page(
+     *     name="index",
+     *     category="page",
+     *     properties={"foo":"bar"}
+     * )
+     * @Track(
+     *     event="visit homepage",
+     *     properties={"bar":"foo"},
+     *     useTimestamp=true,
+     *     context={"aa":"bb"}
+     * )
+     */
+    public function indexAction(Request $request)
+    {
+        // your code
+    }
+```
+
 
 Refer to [Segment.io analytics-php library](https://github.com/segmentio/analytics-php).

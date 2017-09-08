@@ -13,8 +13,9 @@ use Segment as Analytics;
 /**
  * Class SegmentIoProvider
  *
- * @package Farmatholin\SegmentIoBundle\Util
  * @author Vladislav Marin <vladislav.marin92@gmail.com>
+ *
+ * @package Farmatholin\SegmentIoBundle\Util
  */
 class SegmentIoProvider
 {
@@ -36,9 +37,9 @@ class SegmentIoProvider
     /**
      * SegmentIoProvider constructor.
      *
-     * @param $key
-     * @param $environment
-     * @param array $options
+     * @param string $key
+     * @param string $environment
+     * @param array  $options
      */
     public function __construct($key, $environment, array $options)
     {
@@ -50,6 +51,11 @@ class SegmentIoProvider
     }
 
 
+    /**
+     * @param string $name
+     * @param array  $params
+     * @return bool
+     */
     private function process($name, array $params)
     {
         if ($this->isEnabled) {
@@ -64,7 +70,7 @@ class SegmentIoProvider
      */
     public function track(array $message)
     {
-        return $this->process('track',$message);
+        return $this->process('track', $message);
     }
 
     /**
@@ -73,7 +79,7 @@ class SegmentIoProvider
      */
     public function identify(array $message)
     {
-        return $this->process(__FUNCTION__,$message);
+        return $this->process(__FUNCTION__, $message);
     }
 
     /**
@@ -82,7 +88,7 @@ class SegmentIoProvider
      */
     public function page(array $message)
     {
-        return $this->process(__FUNCTION__,$message);
+        return $this->process(__FUNCTION__, $message);
     }
 
     /**
@@ -91,7 +97,7 @@ class SegmentIoProvider
      */
     public function alias(array $message)
     {
-        return $this->process(__FUNCTION__,$message);
+        return $this->process(__FUNCTION__, $message);
     }
 
     /**
@@ -100,7 +106,7 @@ class SegmentIoProvider
      */
     public function group(array $message)
     {
-        return $this->process(__FUNCTION__,$message);
+        return $this->process(__FUNCTION__, $message);
     }
 
     /**
@@ -115,7 +121,7 @@ class SegmentIoProvider
     }
 
     /**
-     * @param array $msg
+     * @param array  $msg
      * @param $string
      * @return bool
      */
