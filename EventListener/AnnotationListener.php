@@ -2,8 +2,7 @@
 
 namespace Farmatholin\SegmentIoBundle\EventListener;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\CachedReader;
+use Doctrine\Common\Annotations\Reader;
 use Farmatholin\SegmentIoBundle\Configuration\Page;
 use Farmatholin\SegmentIoBundle\Configuration\Track;
 use Farmatholin\SegmentIoBundle\Util\SegmentIoProvider;
@@ -20,7 +19,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class AnnotationListener
 {
     /**
-     * @var CachedReader
+     * @var Reader
      */
     protected $reader;
 
@@ -43,13 +42,13 @@ class AnnotationListener
     /**
      * AnnotationListener constructor.
      *
-     * @param AnnotationReader|CachedReader $reader
+     * @param Reader $reader
      * @param TokenStorageInterface $tokenStorage
      * @param SegmentIoProvider $segmentIoProvider
      * @param string $guestId
      */
     public function __construct(
-        CachedReader $reader,
+        Reader $reader,
         TokenStorageInterface $tokenStorage,
         SegmentIoProvider $segmentIoProvider,
         $guestId
