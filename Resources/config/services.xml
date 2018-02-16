@@ -4,15 +4,22 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
+        <parameter key="farma.segment_io.error_handler.class">Farmatholin\SegmentIoBundle\Util\ErrorHandler</parameter>
         <parameter key="farma.segment_io.provider.class">Farmatholin\SegmentIoBundle\Util\SegmentIoProvider</parameter>
         <parameter key="farma.segment_io.event_listener.annotation_listener.class">Farmatholin\SegmentIoBundle\EventListener\AnnotationListener</parameter>
     </parameters>
 
     <services>
+        <service id="farma.segment_io.error_handler" class="%farma.segment_io.error_handler.class%">
+            <argument type="service" id="logger" />
+            <tag name="monolog.logger" channel="segment" />
+        </service>
+
         <service id='segment_io.analytics' class="%farma.segment_io.provider.class%">
             <argument>%farma.segment_io_write_key%</argument>
             <argument>%farma.segment_io_env%</argument>
             <argument>%farma.segment_io_options%</argument>
+            <argument type="service" id="farma.segment_io.error_handler" />
         </service>
 
         <service id="farma.segment_io.annotation_listener" class="%farma.segment_io.event_listener.annotation_listener.class%">
