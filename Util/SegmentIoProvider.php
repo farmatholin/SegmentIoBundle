@@ -37,19 +37,20 @@ class SegmentIoProvider
     /**
      * SegmentIoProvider constructor.
      *
-     * @param string $key
-     * @param string $environment
-     * @param array  $options
+     * @param string       $key
+     * @param string       $environment
+     * @param array        $options
+     * @param ErrorHandler $logger
      */
-    public function __construct($key, $environment, array $options)
+    public function __construct($key, $environment, array $options, ErrorHandler $logger)
     {
         $this->environment = $environment;
         $this->isEnabled = $this->environment == self::SEGMENT_IO_PROVIDER__ENV_PROD && $key;
+        $options['error_handler'] = $logger;
         if ($this->isEnabled) {
             Analytics::init($key, $options);
         }
     }
-
 
     /**
      * @param string $name
