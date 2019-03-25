@@ -22,7 +22,12 @@
   "require": {
     "php": ">=5.4",
     "segmentio/analytics-php": "^1.2",
-    "psr/log": "^1.0"
+    "psr/log": "^1.0",
+    "symfony/config": ">= 2.7",
+    "symfony/dependency-injection": ">= 2.7",
+    "symfony/http-kernel": ">= 2.7",
+    "doctrine/annotations": "1.*",
+    "symfony/security-core": ">= 2.7"
   },
   "autoload": {
     "psr-4": {

@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This file is part of the SegmentIoBundle project.
+ *
+ * (c) Vladislav Marin <vladislav.marin92@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @license MIT
+ */
+
 namespace Farmatholin\SegmentIoBundle\Configuration;
 
 use Doctrine\Common\Annotations\Annotation;
@@ -9,8 +20,6 @@ use Doctrine\Common\Annotations\Annotation\Required;
  * Annotation Track
  *
  * @author Vladislav Marin <vladislav.marin92@gmail.com>
- *
- * @package Farmatholin\SegmentIoBundle\Configuration
  *
  * @Annotation
  * @Target("METHOD")
@@ -103,6 +112,7 @@ class Track implements AnalyticsInterface
         $this->useTimestamp = $useTimestamp;
     }
 
+    /** @noinspection PhpDocMissingThrowsInspection */
     /**
      * @return array
      */
@@ -115,8 +125,10 @@ class Track implements AnalyticsInterface
         ];
 
         if ($this->isUseTimestamp()) {
+            /** @noinspection PhpUnhandledExceptionInspection */
             $result['timestamp'] = (new \DateTime())->getTimestamp();
         }
-        return  $result;
+
+        return $result;
     }
 }

@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This file is part of the SegmentIoBundle project.
+ *
+ * (c) Vladislav Marin <vladislav.marin92@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @license MIT
+ */
+
 namespace Farmatholin\SegmentIoBundle\Util;
 
 use Psr\Log\LoggerInterface;
@@ -9,12 +20,14 @@ use Psr\Log\LoggerInterface;
  */
 class ErrorHandler
 {
-
-    /** @var LoggerInterface */
+    /**
+     * @var LoggerInterface
+     */
     protected $logger;
 
     /**
      * ErrorHandler constructor.
+     *
      * @param LoggerInterface $logger
      */
     public function __construct(LoggerInterface $logger)

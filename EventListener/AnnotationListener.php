@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This file is part of the SegmentIoBundle project.
+ *
+ * (c) Vladislav Marin <vladislav.marin92@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @license MIT
+ */
+
 namespace Farmatholin\SegmentIoBundle\EventListener;
 
 use Doctrine\Common\Annotations\Reader;
@@ -13,8 +24,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  * Class AnnotationListener
  *
  * @author Vladislav Marin <vladislav.marin92@gmail.com>
- *
- * @package Farmatholin\SegmentIoBundle\EventListener
  */
 class AnnotationListener
 {
@@ -38,21 +47,15 @@ class AnnotationListener
      */
     protected $guestId;
 
-
     /**
      * AnnotationListener constructor.
      *
-     * @param Reader $reader
+     * @param Reader                $reader
      * @param TokenStorageInterface $tokenStorage
-     * @param SegmentIoProvider $segmentIoProvider
-     * @param string $guestId
+     * @param SegmentIoProvider     $segmentIoProvider
+     * @param string                $guestId
      */
-    public function __construct(
-        Reader $reader,
-        TokenStorageInterface $tokenStorage,
-        SegmentIoProvider $segmentIoProvider,
-        $guestId
-    )
+    public function __construct(Reader $reader, TokenStorageInterface $tokenStorage, SegmentIoProvider $segmentIoProvider, $guestId)
     {
         $this->reader = $reader;
         $this->segmentIoProvider = $segmentIoProvider;
@@ -62,6 +65,8 @@ class AnnotationListener
 
     /**
      * @param FilterControllerEvent $event
+     *
+     * @throws \ReflectionException
      */
     public function onKernelController(FilterControllerEvent $event)
     {
@@ -93,9 +98,7 @@ class AnnotationListener
                 $message = $configuration->getMessage();
                 $message['userId'] = $userId;
 
-                $this->segmentIoProvider->track(
-                    $message
-                );
+                $this->segmentIoProvider->track($message);
 
                 $this->segmentIoProvider->flush();
             }
@@ -105,6 +108,8 @@ class AnnotationListener
 
     /**
      * @return string|null
+     *
+     * @throws \ReflectionException
      */
     private function getUserId()
     {
@@ -118,11 +123,12 @@ class AnnotationListener
 
         $reflect = new \ReflectionClass($user);
         if ($reflect->hasMethod('getId')) {
-            $id = $user->getId();
-            if ($id !== null) {
-                return $id;
+            $userId = $user->getId();
+            if (null !== $userId) {
+                return $userId;
             }
         }
+
         return $this->guestId;
     }
 }
