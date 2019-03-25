@@ -1,9 +1,14 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: Vladislav
- * Date: 11.11.2015
- * Time: 12:10
+ * This file is part of the SegmentIoBundle project.
+ *
+ * (c) Vladislav Marin <vladislav.marin92@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @license MIT
  */
 
 namespace Farmatholin\SegmentIoBundle\Util;
@@ -14,8 +19,6 @@ use Segment as Analytics;
  * Class SegmentIoProvider
  *
  * @author Vladislav Marin <vladislav.marin92@gmail.com>
- *
- * @package Farmatholin\SegmentIoBundle\Util
  */
 class SegmentIoProvider
 {
@@ -23,14 +26,7 @@ class SegmentIoProvider
     const SEGMENT_IO_PROVIDER__ENV_DEV = 'dev';
 
     /**
-     * @var string
-     * environment
-     */
-    private $environment;
-
-    /**
-     * @var bool
-     * isEnabled
+     * @var bool isEnabled
      */
     private $isEnabled;
 
@@ -44,8 +40,7 @@ class SegmentIoProvider
      */
     public function __construct($key, $environment, array $options, ErrorHandler $logger)
     {
-        $this->environment = $environment;
-        $this->isEnabled = $this->environment == self::SEGMENT_IO_PROVIDER__ENV_PROD && $key;
+        $this->isEnabled = $environment === self::SEGMENT_IO_PROVIDER__ENV_PROD && $key;
         $options['error_handler'] = $logger;
         if ($this->isEnabled) {
             Analytics::init($key, $options);
@@ -53,20 +48,8 @@ class SegmentIoProvider
     }
 
     /**
-     * @param string $name
-     * @param array  $params
-     * @return bool
-     */
-    private function process($name, array $params)
-    {
-        if ($this->isEnabled) {
-            return Analytics::$name($params);
-        }
-        return true;
-    }
-
-    /**
      * @param array $message
+     *
      * @return bool
      */
     public function track(array $message)
@@ -76,6 +59,7 @@ class SegmentIoProvider
 
     /**
      * @param array $message
+     *
      * @return bool
      */
     public function identify(array $message)
@@ -85,6 +69,7 @@ class SegmentIoProvider
 
     /**
      * @param array $message
+     *
      * @return bool
      */
     public function page(array $message)
@@ -94,6 +79,7 @@ class SegmentIoProvider
 
     /**
      * @param array $message
+     *
      * @return bool
      */
     public function alias(array $message)
@@ -103,6 +89,7 @@ class SegmentIoProvider
 
     /**
      * @param array $message
+     *
      * @return bool
      */
     public function group(array $message)
@@ -118,12 +105,14 @@ class SegmentIoProvider
         if ($this->isEnabled) {
             return Analytics::flush();
         }
+
         return true;
     }
 
     /**
      * @param array  $msg
-     * @param $string
+     * @param string $string
+     *
      * @return bool
      */
     public function validate(array $msg, $string)
@@ -133,6 +122,22 @@ class SegmentIoProvider
         } catch (\Exception $e) {
             return false;
         }
+
+        return true;
+    }
+
+    /**
+     * @param string $name
+     * @param array  $params
+     *
+     * @return bool
+     */
+    private function process($name, array $params)
+    {
+        if ($this->isEnabled) {
+            return Analytics::$name($params);
+        }
+
         return true;
     }
 }

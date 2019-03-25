@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This file is part of the SegmentIoBundle project.
+ *
+ * (c) Vladislav Marin <vladislav.marin92@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @license MIT
+ */
+
 namespace Farmatholin\SegmentIoBundle\Configuration;
 
 use Doctrine\Common\Annotations\Annotation;
@@ -10,9 +21,8 @@ use Doctrine\Common\Annotations\Annotation\Required;
  *
  * @author Vladislav Marin <vladislav.marin92@gmail.com>
  *
- * @package Farmatholin\SegmentIoBundle\Configuration
- *
  * @Annotation
+ *
  * @Target("METHOD")
  */
 class Page implements AnalyticsInterface
@@ -47,7 +57,8 @@ class Page implements AnalyticsInterface
     }
 
     /**
-     * @param $category
+     * @param string $category
+     *
      * @return $this
      */
     public function setCategory($category)
@@ -66,7 +77,8 @@ class Page implements AnalyticsInterface
     }
 
     /**
-     * @param $name
+     * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -85,7 +97,7 @@ class Page implements AnalyticsInterface
     }
 
     /**
-     * @param $properties
+     * @param array $properties
      */
     public function setProperties($properties)
     {

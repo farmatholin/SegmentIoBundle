@@ -35,23 +35,44 @@ That's it! You are ready to use Segment.io with symfony2.
 
 ## Configuration
 
-Required  segment write key:
+Required segment write key:
+
+### Symfony 4.X :
 
 ```yml
-# SegmentIoBundle Configuration
+# config/packages/segment_io.yml
+
+segment_io:
+    write_key: "%env(SEGMENTIO_KEY)%"  # add your key
+    guest_id: "guest" # default guest. Guest id for annotation Track and Page
+    env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
+    options:
+        consumer: socket #default
+        debug: false #default
+        ssl: false #default
+        max_queue_size: 10000 #default
+        batch_size: 100 #default
+        timeout: 0.5 #default
+        filename: null #default
+```
+
+### Symfony 2.X || 3.X
+
+```yml
 # app/config/config.yml
-        segment_io:
-            write_key: "%your_key%" #add your key
-            guest_id: "guest" # default guest. Guest id for annotation Track and Page
-            env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
-            options:
-                consumer: socket #default
-                debug: false #default
-                ssl: false #default
-                max_queue_size: 10000 #default
-                batch_size: 100 #default
-                timeout: 0.5 #default
-                filename: null #default
+
+    segment_io:
+        write_key: "%your_key%" #add your key
+        guest_id: "guest" # default guest. Guest id for annotation Track and Page
+        env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
+        options:
+            consumer: socket #default
+            debug: false #default
+            ssl: false #default
+            max_queue_size: 10000 #default
+            batch_size: 100 #default
+            timeout: 0.5 #default
+            filename: null #default
 ```
 
 ## Usage

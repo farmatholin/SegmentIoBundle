@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This file is part of the SegmentIoBundle project.
+ *
+ * (c) Vladislav Marin <vladislav.marin92@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @license MIT
+ */
+
 namespace Farmatholin\SegmentIoBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -9,8 +20,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * Class Configuration
  *
  * @author Vladislav Marin <vladislav.marin92@gmail.com>
- *
- * @package Farmatholin\SegmentIoBundle\DependencyInjection
  */
 class Configuration implements ConfigurationInterface
 {
@@ -68,6 +77,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end()
             ;
+
         return $treeBuilder;
     }
 }
