@@ -36,9 +36,9 @@ class SegmentIoProvider
      * @param string       $key
      * @param string       $environment
      * @param array        $options
-     * @param ErrorHandler $logger
+     * @param Callable     $logger
      */
-    public function __construct($key, $environment, array $options, ErrorHandler $logger)
+    public function __construct($key, $environment, array $options, Callable $logger)
     {
         $this->isEnabled = $environment === self::SEGMENT_IO_PROVIDER__ENV_PROD && $key;
         $options['error_handler'] = $logger;
