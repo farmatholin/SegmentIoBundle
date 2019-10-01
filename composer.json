@@ -10,7 +10,7 @@
     "doctrine",
     "symfony"
   ],
-  "version" : "1.1.0",
+  "version" : "1.2.1",
   "homepage": "http://github.com/farmatholin/SegmentIoBundle",
   "license": "MIT",
   "authors": [
@@ -21,7 +21,7 @@
   ],
   "require": {
     "php": ">=5.4",
-    "segmentio/analytics-php": "^1.2",
+    "segmentio/analytics-php": "^1.5",
     "psr/log": "^1.0",
     "symfony/config": ">= 2.7",
     "symfony/dependency-injection": ">= 2.7",
