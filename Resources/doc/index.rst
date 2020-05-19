@@ -34,7 +34,9 @@ Configure bundle
 .. code-block:: yaml
 
     segment_io:
-        write_key: "%your_key%" #add your key
+        write_key: "%your_key%" #add your main source write_key
+        sources: # provide the sources if you need to send events to different sources
+            - {name: source_name, write_key: key_here} # Here you provide a name and write key for a source
         guest_id: "guest" # default guest. Guest id for annotation Track and Page
         env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
         options:
