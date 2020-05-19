@@ -6,6 +6,7 @@
     <parameters>
         <parameter key="farma.segment_io.error_handler.class">Farmatholin\SegmentIoBundle\Util\ErrorHandler</parameter>
         <parameter key="farma.segment_io.provider.class">Farmatholin\SegmentIoBundle\Util\SegmentIoProvider</parameter>
+        <parameter key="farma.segment_io.provider.factory.class">Farmatholin\SegmentIoBundle\Util\SegmentIoProviderFactory</parameter>
         <parameter key="farma.segment_io.event_listener.annotation_listener.class">Farmatholin\SegmentIoBundle\EventListener\AnnotationListener</parameter>
     </parameters>
 
@@ -17,6 +18,13 @@
 
         <service id='segment_io.analytics' class="%farma.segment_io.provider.class%">
             <argument>%farma.segment_io_write_key%</argument>
+            <argument>%farma.segment_io_env%</argument>
+            <argument>%farma.segment_io_options%</argument>
+            <argument type="service" id="farma.segment_io.error_handler" />
+        </service>
+
+        <service id='segment_io.analytics' class="%farma.segment_io.provider.factory.class%">
+            <argument>%farma.segment_io_sources%</argument>
             <argument>%farma.segment_io_env%</argument>
             <argument>%farma.segment_io_options%</argument>
             <argument type="service" id="farma.segment_io.error_handler" />

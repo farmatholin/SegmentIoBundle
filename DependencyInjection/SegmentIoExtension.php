@@ -40,6 +40,7 @@ class SegmentIoExtension extends Extension
         $loader->load('services.xml');
 
         $container->setParameter('farma.segment_io_write_key', $config['write_key']);
+        $container->setParameter('farma.segment_io_sources', $config['sources']??[]);
         $container->setParameter('farma.segment_io_guest_id', $config['guest_id']);
         $container->setParameter('farma.segment_io_env', $config['env']);
         $container->setParameter('farma.segment_io_options', $config['options']);
