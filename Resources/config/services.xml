@@ -23,7 +23,7 @@
             <argument type="service" id="farma.segment_io.error_handler" />
         </service>
 
-        <service id='segment_io.analytics' class="%farma.segment_io.provider.factory.class%">
+        <service id='segment_io.analytics.factory' class="%farma.segment_io.provider.factory.class%">
             <argument>%farma.segment_io_sources%</argument>
             <argument>%farma.segment_io_env%</argument>
             <argument>%farma.segment_io_options%</argument>
