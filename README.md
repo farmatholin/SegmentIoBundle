@@ -15,9 +15,9 @@ Installing the bundle via packagist is the quickest and simplest method of insta
 
 ### Step 1: Composer require
 
-    $ php composer.phar require "farmatholin/segment-io-bundle":"dev-master"
+    $ php composer.phar require "farmatholin/segment-io-bundle":"^1.3"
 
-### Step 2: Enable the bundle in the kernel
+### Step 2: Enable the bundle in the kernel (Symfony < 3.4)
 
     <?php
     // app/AppKernel.php
@@ -40,7 +40,7 @@ Required segment write key:
 ### Symfony 4.X || 5.X :
 
 ```yml
-# config/packages/segment_io.yml
+# config/packages/segment_io.yaml
 
 segment_io:
     write_key: "%env(SEGMENTIO_KEY)%"  # add your key
@@ -81,7 +81,7 @@ Get `segment_io.analytics` service from the service container and start using it
 
 ```php
 $analytics = $this->get('segment_io.analytics');
-$analytics->page([])
+$analytics->page([]);
 ```
 
 Or using Annotations (Page and Track)
@@ -110,6 +110,31 @@ use Farmatholin\SegmentIoBundle\Configuration\Track;
      */
     public function indexAction(Request $request)
     {
+        // your code
+    }
+```
+
+Or using dependency injection:
+
+```php
+
+use Farmatholin\SegmentIoBundle\Util\SegmentIoProvider;
+    
+    /**
+     * @Route("/", name="homepage", methods={"GET"})
+     *
+     * @param SegmentIoProvider $segmentIoProvider
+     */
+    public function index(SegmentIoProvider $segmentIoProvider) {
+        $segmentIoProvider->track([
+            'userId' => 123, // or 'guest' if not available
+            'event' => 'visit homepage',
+            'properties' => [
+                'foo' => 'bar'
+            ] 
+        ]);
+        $segmentIoProvider->flush();
+        
         // your code
     }
 ```
