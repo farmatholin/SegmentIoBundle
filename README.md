@@ -54,6 +54,7 @@ segment_io:
         flush_at: 100 #default
         timeout: 0.5 #default
         filename: null #default
+        host:  #default not set - uses segment default api
 ```
 
 ### Symfony 2.X || 3.X
@@ -73,6 +74,7 @@ segment_io:
             flush_at: 100 #default
             timeout: 0.5 #default
             filename: null #default
+            host: #default not set - uses segment default api.
 ```
 
 ## Usage
