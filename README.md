@@ -51,7 +51,7 @@ segment_io:
         debug: false #default
         ssl: false #default
         max_queue_size: 10000 #default
-        batch_size: 100 #default
+        flush_at: 100 #default
         timeout: 0.5 #default
         filename: null #default
 ```
@@ -70,7 +70,7 @@ segment_io:
             debug: false #default
             ssl: false #default
             max_queue_size: 10000 #default
-            batch_size: 100 #default
+            flush_at: 100 #default
             timeout: 0.5 #default
             filename: null #default
 ```
