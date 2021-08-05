@@ -26,6 +26,15 @@ use Symfony\Component\DependencyInjection\Loader;
 class SegmentIoExtension extends Extension
 {
     /**
+     * @see https://segment.com/docs/connections/data-residency/
+     */
+    private const DATA_RESIDENCIES = [
+        'Dublin' => 'in.eu2.segmentapis.com',
+        'Singapore' => 'in.ap1.segmentapis.com',
+        'Sydney' => 'in.au1.segmentapis.com'
+    ];
+
+    /**
      * @param array            $configs
      * @param ContainerBuilder $container
      *
@@ -38,6 +47,10 @@ class SegmentIoExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        if (isset(static::DATA_RESIDENCIES[$config['data_residency']]) && !isset($config['options']['host'])) {
+            $config['options']['host'] = static::DATA_RESIDENCIES[$config['data_residency']];
+        }
 
         $container->setParameter('farma.segment_io_write_key', $config['write_key']);
         $container->setParameter('farma.segment_io_sources', $config['sources']??[]);

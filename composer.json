@@ -21,7 +21,7 @@
   ],
   "require": {
     "php": ">=5.4",
-    "segmentio/analytics-php": "^1.5",
+    "segmentio/analytics-php": "^1.7",
     "psr/log": "^1.0",
     "symfony/config": ">= 2.7",
     "symfony/dependency-injection": ">= 2.7",

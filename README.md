@@ -46,14 +46,16 @@ segment_io:
     write_key: "%env(SEGMENTIO_KEY)%"  # add your key
     guest_id: "guest" # default guest. Guest id for annotation Track and Page
     env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
+    data_residency: Oregon #default Oregon. Can be Oregon, Dublin, Signapore or Sydney. Overwritten by host option
     options:
         consumer: socket #default
         debug: false #default
         ssl: false #default
         max_queue_size: 10000 #default
-        batch_size: 100 #default
+        flush_at: 100 #default
         timeout: 0.5 #default
         filename: null #default
+        host:  #default not set - uses segment default api
 ```
 
 ### Symfony 2.X || 3.X
@@ -65,15 +67,23 @@ segment_io:
         write_key: "%your_key%" #add your key
         guest_id: "guest" # default guest. Guest id for annotation Track and Page
         env: prod #default prod. Can be prod (sending to segment) and dev (not sending)
+        data_residency: Oregon #default Oregon. Can be Oregon, Dublin, Signapore or Sydney. Overwritten by host option
         options:
             consumer: socket #default
             debug: false #default
             ssl: false #default
             max_queue_size: 10000 #default
-            batch_size: 100 #default
+            flush_at: 100 #default
             timeout: 0.5 #default
             filename: null #default
+            host: #default not set - uses segment default api.
 ```
+
+### Data Residency
+
+Segment allows the usage of [regional infrastructure](https://segment.com/docs/connections/data-residency/). If your
+Segment plan supports this, you can set the `data_residency` option to either `Oregon`, `Dublin`, `Singapore` or
+`Sydney`. If you set the `option.host` value, the `data_residency` setting is ignored and the `host` option is used.
 
 ## Usage
 
