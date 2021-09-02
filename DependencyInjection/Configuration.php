@@ -58,7 +58,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('prod')
                 ->end()
                 ->enumNode('data_residency')
-                    ->values(['Oregon', 'Dublin', 'Signapore', 'Sydney'])
+                    ->values(['Oregon', 'Dublin', 'Singapore', 'Sydney'])
                     ->defaultValue('Oregon')
                 ->end()
                 ->arrayNode('options')
