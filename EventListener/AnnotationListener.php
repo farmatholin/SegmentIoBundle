@@ -27,25 +27,10 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class AnnotationListener
 {
-    /**
-     * @var Reader
-     */
-    protected $reader;
-
-    /**
-     * @var SegmentIoProvider
-     */
-    protected $segmentIoProvider;
-
-    /**
-     * @var TokenStorageInterface
-     */
-    protected $tokenStorage;
-
-    /**
-     * @var string
-     */
-    protected $guestId;
+    protected Reader $reader;
+    protected SegmentIoProvider $segmentIoProvider;
+    protected TokenStorageInterface $tokenStorage;
+    protected string $guestId;
 
     /**
      * AnnotationListener constructor.
@@ -55,7 +40,7 @@ class AnnotationListener
      * @param SegmentIoProvider     $segmentIoProvider
      * @param string                $guestId
      */
-    public function __construct(Reader $reader, TokenStorageInterface $tokenStorage, SegmentIoProvider $segmentIoProvider, $guestId)
+    public function __construct(Reader $reader, TokenStorageInterface $tokenStorage, SegmentIoProvider $segmentIoProvider, string $guestId)
     {
         $this->reader = $reader;
         $this->segmentIoProvider = $segmentIoProvider;
@@ -68,7 +53,7 @@ class AnnotationListener
      *
      * @throws \ReflectionException
      */
-    public function onKernelController(ControllerEvent $event)
+    public function onKernelController(ControllerEvent $event): void
     {
         $controller = $event->getController();
 
@@ -76,7 +61,7 @@ class AnnotationListener
             return;
         }
 
-        list($controllerObject, $methodName) = $controller;
+        [$controllerObject, $methodName] = $controller;
 
         $controllerReflectionObject = new \ReflectionObject($controllerObject);
         $reflectionMethod = $controllerReflectionObject->getMethod($methodName);
@@ -111,7 +96,7 @@ class AnnotationListener
      *
      * @throws \ReflectionException
      */
-    private function getUserId()
+    private function getUserId(): ?string
     {
         if (null === $token = $this->tokenStorage->getToken()) {
             return $this->guestId;

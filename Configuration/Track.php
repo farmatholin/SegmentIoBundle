@@ -36,22 +36,22 @@ class Track implements AnalyticsInterface
     /**
      * @var array
      */
-    public $properties = [];
+    public array $properties = [];
 
     /**
      * @var array
      */
-    public $context = [];
+    public array $context = [];
 
     /**
      * @var bool
      */
-    public $useTimestamp = false;
+    public bool $useTimestamp = false;
 
     /**
      * @return string
      */
-    public function getEvent()
+    public function getEvent(): string
     {
         return $this->event;
     }
@@ -59,7 +59,7 @@ class Track implements AnalyticsInterface
     /**
      * @param string $event
      */
-    public function setEvent($event)
+    public function setEvent(string $event): void
     {
         $this->event = $event;
     }
@@ -67,7 +67,7 @@ class Track implements AnalyticsInterface
     /**
      * @return array
      */
-    public function getProperties()
+    public function getProperties(): array
     {
         return $this->properties;
     }
@@ -75,7 +75,7 @@ class Track implements AnalyticsInterface
     /**
      * @param array $properties
      */
-    public function setProperties($properties)
+    public function setProperties(array $properties): void
     {
         $this->properties = $properties;
     }
@@ -83,7 +83,7 @@ class Track implements AnalyticsInterface
     /**
      * @return array
      */
-    public function getContext()
+    public function getContext(): array
     {
         return $this->context;
     }
@@ -91,7 +91,7 @@ class Track implements AnalyticsInterface
     /**
      * @param array $context
      */
-    public function setContext($context)
+    public function setContext(array $context): void
     {
         $this->context = $context;
     }
@@ -99,7 +99,7 @@ class Track implements AnalyticsInterface
     /**
      * @return bool
      */
-    public function isUseTimestamp()
+    public function isUseTimestamp(): bool
     {
         return $this->useTimestamp;
     }
@@ -107,7 +107,7 @@ class Track implements AnalyticsInterface
     /**
      * @param bool $useTimestamp
      */
-    public function setUseTimestamp($useTimestamp)
+    public function setUseTimestamp(bool $useTimestamp): void
     {
         $this->useTimestamp = $useTimestamp;
     }
@@ -116,7 +116,7 @@ class Track implements AnalyticsInterface
     /**
      * @return array
      */
-    public function getMessage()
+    public function getMessage(): array
     {
         $result = [
             'event' => $this->event,

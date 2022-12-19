@@ -28,7 +28,7 @@ class SegmentIoProvider
     /**
      * @var bool isEnabled
      */
-    private $isEnabled;
+    private bool $isEnabled;
 
     /**
      * SegmentIoProvider constructor.
@@ -38,7 +38,7 @@ class SegmentIoProvider
      * @param array        $options
      * @param Callable     $logger
      */
-    public function __construct($key, $environment, array $options, Callable $logger)
+    public function __construct(string $key, string $environment, array $options, callable $logger)
     {
         $this->isEnabled = $environment === self::SEGMENT_IO_PROVIDER__ENV_PROD && $key;
         $options['error_handler'] = $logger;
@@ -52,7 +52,7 @@ class SegmentIoProvider
      *
      * @return bool
      */
-    public function track(array $message)
+    public function track(array $message): bool
     {
         return $this->process('track', $message);
     }
@@ -62,7 +62,7 @@ class SegmentIoProvider
      *
      * @return bool
      */
-    public function identify(array $message)
+    public function identify(array $message): bool
     {
         return $this->process(__FUNCTION__, $message);
     }
@@ -72,7 +72,7 @@ class SegmentIoProvider
      *
      * @return bool
      */
-    public function page(array $message)
+    public function page(array $message): bool
     {
         return $this->process(__FUNCTION__, $message);
     }
@@ -82,7 +82,7 @@ class SegmentIoProvider
      *
      * @return bool
      */
-    public function alias(array $message)
+    public function alias(array $message): bool
     {
         return $this->process(__FUNCTION__, $message);
     }
@@ -92,7 +92,7 @@ class SegmentIoProvider
      *
      * @return bool
      */
-    public function group(array $message)
+    public function group(array $message): bool
     {
         return $this->process(__FUNCTION__, $message);
     }
@@ -100,7 +100,7 @@ class SegmentIoProvider
     /**
      * @return mixed
      */
-    public function flush()
+    public function flush(): bool
     {
         if ($this->isEnabled) {
             return Analytics::flush();
@@ -115,7 +115,7 @@ class SegmentIoProvider
      *
      * @return bool
      */
-    public function validate(array $msg, $string)
+    public function validate(array $msg, string $string): bool
     {
         try {
             Analytics::validate($msg, $string);
@@ -132,7 +132,7 @@ class SegmentIoProvider
      *
      * @return bool
      */
-    private function process($name, array $params)
+    private function process(string $name, array $params): bool
     {
         if ($this->isEnabled) {
             return Analytics::$name($params);
