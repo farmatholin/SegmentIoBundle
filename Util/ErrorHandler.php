@@ -20,10 +20,7 @@ use Psr\Log\LoggerInterface;
  */
 class ErrorHandler
 {
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /**
      * ErrorHandler constructor.
@@ -39,7 +36,7 @@ class ErrorHandler
      * @param string|int $code
      * @param string     $msg
      */
-    public function __invoke($code, $msg)
+    public function __invoke($code, string $msg)
     {
         $this->logger->error(sprintf('SegmentIO error %s : %s', $code, $msg));
     }

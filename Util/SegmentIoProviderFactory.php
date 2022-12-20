@@ -4,12 +4,12 @@ namespace Farmatholin\SegmentIoBundle\Util;
 
 class SegmentIoProviderFactory
 {
-    private $sources;
-    private $options;
+    private array $sources;
+    private array $options;
     private $logger;
-    private $env;
+    private string $env;
 
-    public function __construct(array $sources, $env, array $options, callable $logger)
+    public function __construct(array $sources, string $env, array $options, callable $logger)
     {
         $this->sources = $sources;
         $this->options = $options;

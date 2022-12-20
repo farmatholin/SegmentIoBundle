@@ -45,13 +45,13 @@ class Page implements AnalyticsInterface
     /**
      * @var array
      */
-    public $properties = [];
+    public array $properties = [];
 
 
     /**
      * @return string
      */
-    public function getCategory()
+    public function getCategory(): string
     {
         return $this->category;
     }
@@ -61,7 +61,7 @@ class Page implements AnalyticsInterface
      *
      * @return $this
      */
-    public function setCategory($category)
+    public function setCategory(string $category): Page
     {
         $this->category = $category;
 
@@ -71,7 +71,7 @@ class Page implements AnalyticsInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -81,7 +81,7 @@ class Page implements AnalyticsInterface
      *
      * @return $this
      */
-    public function setName($name)
+    public function setName(string $name): Page
     {
         $this->name = $name;
 
@@ -91,7 +91,7 @@ class Page implements AnalyticsInterface
     /**
      * @return array
      */
-    public function getProperties()
+    public function getProperties(): array
     {
         return $this->properties;
     }
@@ -99,7 +99,7 @@ class Page implements AnalyticsInterface
     /**
      * @param array $properties
      */
-    public function setProperties($properties)
+    public function setProperties(array $properties): void
     {
         $this->properties = $properties;
     }
@@ -107,7 +107,7 @@ class Page implements AnalyticsInterface
     /**
      * @return array
      */
-    public function getMessage()
+    public function getMessage(): array
     {
         return [
             'name' => $this->name,

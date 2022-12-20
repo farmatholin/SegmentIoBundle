@@ -20,8 +20,8 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
-    "segmentio/analytics-php": "^1.7",
+    "php": ">=7.4",
+    "segmentio/analytics-php": "^3.5",
     "psr/log": "^1.0",
     "symfony/config": ">= 2.7",
     "symfony/dependency-injection": ">= 2.7",

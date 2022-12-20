@@ -25,5 +25,5 @@ interface AnalyticsInterface
     /**
      * @return array
      */
-    public function getMessage();
+    public function getMessage(): array;
 }
