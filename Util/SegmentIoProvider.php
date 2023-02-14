@@ -13,7 +13,7 @@
 
 namespace Farmatholin\SegmentIoBundle\Util;
 
-use Segment as Analytics;
+use Segment\Segment as Analytics;
 
 /**
  * Class SegmentIoProvider
