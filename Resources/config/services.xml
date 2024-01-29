@@ -30,14 +30,6 @@
             <argument type="service" id="farma.segment_io.error_handler" />
         </service>
 
-        <service id="farma.segment_io.annotation_listener" class="%farma.segment_io.event_listener.annotation_listener.class%">
-            <argument type="service" id="annotation_reader" />
-            <argument type="service" id="security.token_storage" />
-            <argument type="service" id="segment_io.analytics"/>
-            <argument>%farma.segment_io_guest_id%</argument>
-            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
-        </service>
-
     </services>
 
 

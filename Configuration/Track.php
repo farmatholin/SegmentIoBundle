@@ -24,6 +24,7 @@ use Doctrine\Common\Annotations\Annotation\Required;
  * @Annotation
  * @Target("METHOD")
  */
+#[\Attribute(\Attribute::TARGET_METHOD)]
 class Track implements AnalyticsInterface
 {
     /**
@@ -31,7 +32,7 @@ class Track implements AnalyticsInterface
      *
      * @var string
      */
-    public $event;
+    public string $event;
 
     /**
      * @var array
@@ -47,6 +48,30 @@ class Track implements AnalyticsInterface
      * @var bool
      */
     public bool $useTimestamp = false;
+
+    /**
+     * @param string $event
+     */
+    public function __construct(
+        $event = null,
+        array $properties = [],
+        array $context = [],
+        bool $useTimestamp = false
+    ) {
+        if (is_array($event)) {
+            // Doctrine annotations
+            $this->event = $event['event'];
+            $this->properties = $event['properties'] ?? $this->properties;
+            $this->context = $event['context'] ?? $this->context;
+            $this->useTimestamp = $event['useTimestamp'] ?? $this->useTimestamp;
+        } else {
+            // PHP Attributes
+            $this->event = $event;
+            $this->properties = $properties;
+            $this->context = $context;
+            $this->useTimestamp = $useTimestamp;
+        }
+    }
 
     /**
      * @return string

@@ -11,6 +11,12 @@ Install
 
     $ php composer.phar require "farmatholin/segment-io-bundle":"dev-master"
 
+Install Doctrine Annotations package if needed
+
+.. code-block:: bash
+
+    $ php composer.phar require "doctrine/annotations":"^2.0"
+
 Enable the bundle in the kernel:
 
 .. code-block:: php
