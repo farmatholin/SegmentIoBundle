@@ -13,7 +13,6 @@
 
 namespace Farmatholin\SegmentIoBundle\Configuration;
 
-use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\Required;
 
 /**
@@ -22,9 +21,9 @@ use Doctrine\Common\Annotations\Annotation\Required;
  * @author Vladislav Marin <vladislav.marin92@gmail.com>
  *
  * @Annotation
- *
  * @Target("METHOD")
  */
+#[\Attribute(\Attribute::TARGET_METHOD)]
 class Page implements AnalyticsInterface
 {
 
@@ -33,20 +32,40 @@ class Page implements AnalyticsInterface
      *
      * @var string
      */
-    public $category;
+    public string $category;
 
     /**
      * @Required
      *
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * @var array
      */
     public array $properties = [];
 
+    /**
+     * @param string $category
+     */
+    public function __construct(
+        $category = null,
+        string $name = null,
+        array $properties = []
+    ) {
+        if (is_array($category)) {
+            // Doctrine annotation
+            $this->category = $category['category'];
+            $this->name = $category['name'];
+            $this->properties = $category['properties'] ?? $this->properties;
+        } else {
+            // PHP Attributes
+            $this->category = $category;
+            $this->name = $name;
+            $this->properties = $properties;
+        }
+    }
 
     /**
      * @return string
