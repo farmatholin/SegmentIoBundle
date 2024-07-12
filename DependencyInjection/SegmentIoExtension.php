@@ -16,7 +16,6 @@ namespace Farmatholin\SegmentIoBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
@@ -40,6 +39,8 @@ class SegmentIoExtension extends Extension implements CompilerPassInterface
     /**
      * @param array            $configs
      * @param ContainerBuilder $container
+     *
+     * @return void
      *
      * @throws \Exception
      */
@@ -68,6 +69,11 @@ class SegmentIoExtension extends Extension implements CompilerPassInterface
         $container->setParameter('farma.segment_io_options', $config['options']);
     }
 
+    /**
+     * @param ContainerBuilder $container
+     *
+     * @return void
+     */
     public function process(ContainerBuilder $container)
     {
         // Doctrine annotations can be disabled by Symfony Framework or if doctrine/annotations is missing
