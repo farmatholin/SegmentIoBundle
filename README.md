@@ -37,7 +37,7 @@ That's it! You are ready to use Segment.io with symfony2.
 
 Required segment write key:
 
-### Symfony 4.X || 5.X :
+### Symfony 4.X || 5.X || 6.X :
 
 ```yml
 # config/packages/segment_io.yaml
