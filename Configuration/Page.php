@@ -51,7 +51,7 @@ class Page implements AnalyticsInterface
      */
     public function __construct(
         $category = null,
-        string $name = null,
+        ?string $name = null,
         array $properties = []
     ) {
         if (is_array($category)) {
